@@ -22,8 +22,8 @@ jobs:
       - name: Download MSIX Hero
         shell: bash
         run: |
-          curl -L -O https://sparrowassets.blob.core.windows.net/devops/msix%20hero%20bins.zip
-          unzip msix\ hero\ bins.zip -d msix_hero
+          curl -L -O https://sparrowassets.blob.core.windows.net/devops/msix-hero-bins.zip
+          unzip msix-hero-bins.zip -d msix_hero
 
       - name: Unpack MSI file
         shell: bash
