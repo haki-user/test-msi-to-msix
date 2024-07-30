@@ -1,0 +1,25 @@
+name: Convert MSI to MSIX
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch: null
+
+jobs:
+  convert:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup lessmsi
+        shell: bash
+        run: |
+          curl -L -O https://github.com/activescott/lessmsi/releases/download/v2.1.1/lessmsi-v2.1.1.zip
+          unzip lessmsi-v2.1.1.zip -d .
+
+      - name: Setup MSIXHero
+        shell: bash
+        run: |
+          
+
