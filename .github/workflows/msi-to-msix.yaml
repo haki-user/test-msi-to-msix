@@ -35,7 +35,7 @@ jobs:
       - name: Repack MSI with MSIX Hero
         shell: bash
         run: |
-          msix_hero/msixherocli.exe -i unpacked_msi -o output.msix
+          "msix_hero/msix hero bins/msixherocli.exe" -i unpacked_msi -o output.msix
 
       - name: Upload MSIX package
         uses: actions/upload-artifact@v3
