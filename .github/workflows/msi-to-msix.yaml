@@ -10,16 +10,33 @@ jobs:
   convert:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup lessmsi
         shell: bash
         run: |
           curl -L -O https://github.com/activescott/lessmsi/releases/download/v2.1.1/lessmsi-v2.1.1.zip
-          unzip lessmsi-v2.1.1.zip -d .
+          unzip lessmsi-v2.1.1.zip -d lessmsi
 
-      - name: Setup MSIXHero
+      - name: Download MSIX Hero
         shell: bash
         run: |
-          
+          curl -L -O https://sparrowassets.blob.core.windows.net/devops/msix%20hero%20bins.zip
+          unzip msix\ hero\ bins.zip -d msix_hero
 
+      - name: Unpack MSI file
+        shell: bash
+        run: |
+          lessmsi/lessmsi x Sparrow_2.3.0_x64_en-US.msi unpacked_msi
+
+      - name: Repack MSI with MSIX Hero
+        shell: bash
+        run: |
+          msix_hero/MSIXHeroCLI.exe -i unpacked_msi -o output.msix
+
+      - name: Upload MSIX package
+        uses: actions/upload-artifact@v3
+        with:
+          name: msix-package
+          path: output.msix
