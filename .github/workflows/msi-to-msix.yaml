@@ -30,12 +30,12 @@ jobs:
       - name: Unpack MSI file
         shell: bash
         run: |
-          lessmsi/lessmsi x Sparrow_2.3.0_x64_en-US.msi unpacked_msi/
+          lessmsi/lessmsi x Sparrow_2.3.0_x64_en-US.msi
 
       - name: Repack MSI with MSIX Hero
         shell: bash
         run: |
-          "msix_hero/msix hero bins/msixherocli.exe" -i unpacked_msi -o output.msix
+          "msix_hero/msix hero bins/msixherocli.exe" --directory Sparrow_2.3.0_x64_en-US--package output.msix
 
       - name: Upload MSIX package
         uses: actions/upload-artifact@v3
