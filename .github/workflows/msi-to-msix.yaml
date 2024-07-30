@@ -24,6 +24,8 @@ jobs:
         run: |
           curl -L -O https://sparrowassets.blob.core.windows.net/devops/msix-hero-bins.zip
           unzip msix-hero-bins.zip -d msix_hero
+          ls
+          ls msix_hero
 
       - name: Unpack MSI file
         shell: bash
